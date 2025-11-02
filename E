@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class HW1E {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int x1 = sc.nextInt();
+        int y1 = sc.nextInt();
+        int x2 = sc.nextInt();
+        int y2 = sc.nextInt();
+
+        int N = sc.nextInt();
+        int count = 0;
+
+        for (int i = 0; i < N; i++) {
+            int x3 = sc.nextInt();
+            int y3 = sc.nextInt();
+            int x4 = sc.nextInt();
+            int y4 = sc.nextInt();
+
+            boolean intersect = false;
+
+            boolean vertical1 = x1 == x2;
+            boolean vertical2 = x3 == x4;
+
+            double A=0, B=0, C=0, D=0;
+            double intersectX=0, intersectY=0;
+
+            if (!vertical1) {
+                A = (double)(y2 - y1) / (x2 - x1);
+                B = y1 - A * x1;
+            }
+            if (!vertical2) {
+                C = (double)(y4 - y3) / (x4 - x3);
+                D = y3 - C * x3;
+            }
+
+            if (vertical1 && vertical2) {
+                if (x1 == x3) {
+                    intersect = Math.max(Math.min(y1,y2), Math.min(y3,y4)) <= Math.min(Math.max(y1,y2), Math.max(y3,y4));
+                }
+            } else if (vertical1) {
+                intersectX = x1;
+                intersectY = C * intersectX + D;
+                intersect = intersectY >= Math.min(y1,y2) && intersectY <= Math.max(y1,y2) &&
+                        intersectY >= Math.min(y3,y4) && intersectY <= Math.max(y3,y4) &&
+                        intersectX >= Math.min(x3,x4) && intersectX <= Math.max(x3,x4);
+            } else if (vertical2) {
+                intersectX = x3;
+                intersectY = A * intersectX + B;
+                intersect = intersectY >= Math.min(y3,y4) && intersectY <= Math.max(y3,y4) &&
+                        intersectY >= Math.min(y1,y2) && intersectY <= Math.max(y1,y2) &&
+                        intersectX >= Math.min(x1,x2) && intersectX <= Math.max(x1,x2);
+            } else if (A == C) {
+                if (B == D) {
+                    intersect = Math.max(Math.min(x1,x2), Math.min(x3,x4)) <= Math.min(Math.max(x1,x2), Math.max(x3,x4));
+                }
+            } else {
+                intersectX = (D - B) / (A - C);
+                intersectY = A * intersectX + B;
+                intersect = intersectX >= Math.min(x1,x2) && intersectX <= Math.max(x1,x2) &&
+                        intersectX >= Math.min(x3,x4) && intersectX <= Math.max(x3,x4) &&
+                        intersectY >= Math.min(y1,y2) && intersectY <= Math.max(y1,y2) &&
+                        intersectY >= Math.min(y3,y4) && intersectY <= Math.max(y3,y4);
+            }
+
+            if (intersect) count++;
+        }
+
+        System.out.println(count);
+    }
+}
