@@ -1,5 +1,5 @@
 public class Dog extends Animal{
-    public Dog(int id, double height){
+    public Dog(int id, double height) {
         super(id, height);
     }
 
