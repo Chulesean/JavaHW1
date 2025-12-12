@@ -1,17 +1,15 @@
-public class Supervisor{
+public class Supervisor {
     private int id;
     private String name;
-    //  private Animal animal;
-    // 1 supervisor for many animals
-    public Supervisor(int id, String name){
+    public Supervisor(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getName(){
+    public String getName() {
         return name;
     }
 }
