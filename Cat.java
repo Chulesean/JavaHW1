@@ -1,5 +1,5 @@
 public class Cat extends Animal{
-    public Cat(int id, double height){
+    public Cat(int id, double height) {
         super(id, height);
     }
 
@@ -7,4 +7,5 @@ public class Cat extends Animal{
     public void makeSound() {
         System.out.println("meow");
     }
+
 }
