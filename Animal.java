@@ -21,5 +21,4 @@ public abstract class Animal {
         this.supervisor = supervisor;
     }
     public abstract void makeSound();
-
 }
