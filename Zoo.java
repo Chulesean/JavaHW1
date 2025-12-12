@@ -13,10 +13,10 @@ public class Zoo {
         this.supervisors = new ArrayList<>();
         this.animalMap = new HashMap<>();
     }
-    public Zoo(List<Animal> animals){
+    public Zoo(List<Animal> animals) {
         this();
         this.animals.addAll(animals);
-        for(Animal animal : animals){
+        for(Animal animal : animals) {
             this.animalMap.put(animal.getId(), animal);
         }
     }
@@ -30,48 +30,42 @@ public class Zoo {
         this.supervisors.add(supervisor);
     }
     public Animal findAnimal(int animalId) {
-//        for (Animal animal : animals) {
-//            if (animal.getId() == animalId) {
-//                return animal;
-//            }
-//        }
-//        return null;
         return animalMap.get(animalId);
     }
-    public boolean deleteAnimal(int animalId){
+    public boolean deleteAnimal(int animalId) {
         Animal animalToDelete = findAnimal(animalId);
-        if (animalToDelete != null){
+        if (animalToDelete != null) {
             animals.remove(animalToDelete);
             animalMap.remove(animalId);
             return true;
         }
         return false;
     }
-    public void assignSupervisorToAnimal(int AnimalId, Supervisor supervisor){
+    public void assignSupervisorToAnimal(int AnimalId, Supervisor supervisor) {
         Animal animalToAssign = findAnimal(AnimalId);
         if (animalToAssign != null){
             animalToAssign.setSupervisor(supervisor);
         }
     }
-    public List<Animal> getAnimalsBySupervisorId(int supervisorId){
+    public List<Animal> getAnimalsBySupervisorId(int supervisorId) {
         List<Animal> result = new ArrayList<>();
         for (Animal animal : animals){
-            if (animal.getSupervisor().getId() == supervisorId){
+            if (animal.getSupervisor().getId() == supervisorId) {
                 result.add(animal);
             }
         }
         return result;
     }
-    public List<Animal> getAnimalsBySupervisorName(String supervisorName){
+    public List<Animal> getAnimalsBySupervisorName(String supervisorName) {
         List<Animal> result = new ArrayList<>();
         for (Animal animal : animals){
-            if (animal.getSupervisor().getName().equals(supervisorName)){
+            if (animal.getSupervisor().getName().equals(supervisorName)) {
                 result.add(animal);
             }
         }
         return result;
     }
-    public List<Animal> getAnimalHigher(double standard){
+    public List<Animal> getAnimalHigher(double standard) {
         List<Animal> result = new ArrayList<>();
         for (Animal animal : animals){
             if (animal.getHeight() > standard) {
@@ -80,16 +74,16 @@ public class Zoo {
         }
         return result;
     }
-    public List<Animal> getAnimalCanMakeSound(){
+    public List<Animal> getAnimalCanMakeSound() {
         List<Animal> result = new ArrayList<>();
         for(Animal animal : animals){
-            if (animal.getClass() != Fish.class){
+            if (animal.getClass() != Fish.class) {
                 result.add(animal);
             }
         }
         return result;
     }
-    public List<Animal> getAnimalsByType(Class<?> animalType){
+    public List<Animal> getAnimalsByType(Class<?> animalType) {
         List<Animal> result = new ArrayList<>();
         for(Animal animal : animals) {
             if (animal.getClass() == animalType) {
